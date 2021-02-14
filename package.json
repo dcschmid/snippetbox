@@ -1,0 +1,8 @@
+{
+  "name": "snippetbox",
+  "version": "0.0.0",
+  "main": "index.js",
+  "repository": "git@git.danschmid.de:dcschmid/snippetbox.git",
+  "author": "Daniel Schmid <daniel.schmid@libertymail.net>",
+  "license": "MIT"
+}
