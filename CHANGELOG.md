@@ -1,3 +1,16 @@
+# [0.2.0](https://github.com/dcschmid/snippetbox/compare/v0.1.0...v0.2.0) (2021-03-28)
+
+
+### Features
+
+* add dependecy injection ([be7961d](https://github.com/dcschmid/snippetbox/commit/be7961d0b82c309282c9a8943cab274ab6f904f6))
+* add leveled logging ([32482b3](https://github.com/dcschmid/snippetbox/commit/32482b35bf2f9f0457ece7b8410fca32e7c356c2))
+* add managing congiguration settings ([db4ed1d](https://github.com/dcschmid/snippetbox/commit/db4ed1df0c8b30bb88850426bd4693a3c4376e37))
+* centralized error handling ([799a5ef](https://github.com/dcschmid/snippetbox/commit/799a5ef4e5e5407fc7ab54f9b04929a7848de464))
+* isolating the application routes ([aca1cc3](https://github.com/dcschmid/snippetbox/commit/aca1cc3c3605599e0ce30c578fe93fcae5d1db19))
+
+
+
 # 0.1.0 (2021-03-28)
 
 
