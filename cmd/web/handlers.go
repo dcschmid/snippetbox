@@ -3,13 +3,12 @@ package main
 import (
 	"fmt"
 	"html/template"
-	"log"
 	"net/http"
 	"strconv"
 )
 
 // Define a home handler function
-func home(w http.ResponseWriter, r *http.Request) {
+func (app *application) home(w http.ResponseWriter, r *http.Request) {
     // Check if the current request URL path exactly matches "/". If it doesn't, use
     // the http.NotFound() function to send a 404 response to the client.
     // Importantly, we then return form the handler.
@@ -34,7 +33,7 @@ func home(w http.ResponseWriter, r *http.Request) {
     ts, err := template.ParseFiles(files...)
 
     if err != nil {
-        log.Println(err.Error())
+        app.errorLog.Println(err.Error())
         http.Error(w, "Internal Server error", 500)
         return
     }
@@ -45,13 +44,13 @@ func home(w http.ResponseWriter, r *http.Request) {
     err = ts.Execute(w, nil)
 
     if err != nil {
-        log.Println(err.Error())
+        app.errorLog.Println(err.Error())
         http.Error(w, "Internal Server Error", 500)
     }
 }
 
 // Add a showSnippet handler function
-func showSnippet(w http.ResponseWriter, r *http.Request) {
+func (app *application) showSnippet(w http.ResponseWriter, r *http.Request) {
     // Extract the value of the id parameter from the query string and try to
     // convert it to an integer using the strconv.Atoi() function. If it can't
     // be converted to an integer, or the value is less than 1, we return a 404 page
@@ -69,7 +68,7 @@ func showSnippet(w http.ResponseWriter, r *http.Request) {
 }
 
 // Add a createSnippet handler function
-func createSnippet(w http.ResponseWriter, r *http.Request) {
+func (app *application) createSnippet(w http.ResponseWriter, r *http.Request) {
     // Use r.Method to check whether te request is using POST or not. Note that
     // http.MehodPost is a constant equal  to the string "POST".
     if r.Method != http.MethodPost {
