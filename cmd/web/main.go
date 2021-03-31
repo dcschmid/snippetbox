@@ -8,6 +8,7 @@ import (
 	"os"
 	"strings"
 
+	"danschmid.de/snippetbox/pkg/models/mysql"
 	_ "github.com/go-sql-driver/mysql"
 )
 
@@ -17,6 +18,7 @@ import (
 type application struct {
     errorLog *log.Logger
     infoLog *log.Logger
+    snippets *mysql.SnippetModel
 }
 
 func main() {
@@ -63,6 +65,7 @@ func main() {
     app := &application{
         errorLog: errorLog,
         infoLog: infoLog,
+        snippets: &mysql.SnippetModel{DB: db},
     }
 
     // Initialize a new http.Server struct. We set the Addr and Handler fields so
