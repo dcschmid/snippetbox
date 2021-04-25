@@ -3,7 +3,8 @@ package main
 import (
 	"errors"
 	"fmt"
-	"html/template"
+
+	// "html/template"
 	"net/http"
 	"strconv"
 
@@ -20,6 +21,18 @@ func (app *application) home(w http.ResponseWriter, r *http.Request) {
         return
     }
 
+
+    s, err := app.snippets.Latest()
+    if err != nil {
+        app.serverError(w, err)
+        return
+    }
+
+    for _, snippet := range s {
+        fmt.Fprintf(w, "%v\n", snippet)
+    }
+
+    /*
     // Initialize a slice containing the paths to the two files. Note that the
     // home.page.tmpl file must be the *first* file in the slice.
     files := []string{
@@ -47,7 +60,7 @@ func (app *application) home(w http.ResponseWriter, r *http.Request) {
 
     if err != nil {
         app.serverError(w, err)
-    }
+    }*/
 }
 
 // Add a showSnippet handler function
