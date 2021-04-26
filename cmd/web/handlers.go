@@ -12,14 +12,6 @@ import (
 
 // Define a home handler function
 func (app *application) home(w http.ResponseWriter, r *http.Request) {
-    // Check if the current request URL path exactly matches "/". If it doesn't, use
-    // the http.NotFound() function to send a 404 response to the client.
-    // Importantly, we then return form the handler.
-    if r.URL.Path != "/" {
-        app.notFound(w)
-        return
-    }
-
     s, err := app.snippets.Latest()
     if err != nil {
         app.serverError(w, err)
@@ -38,7 +30,7 @@ func (app *application) showSnippet(w http.ResponseWriter, r *http.Request) {
     // convert it to an integer using the strconv.Atoi() function. If it can't
     // be converted to an integer, or the value is less than 1, we return a 404 page
     // not found response.
-    id, err := strconv.Atoi(r.URL.Query().Get("id"))
+    id, err := strconv.Atoi(r.URL.Query().Get(":id"))
 
     if err != nil || id < 1 {
         app.notFound(w)
@@ -66,20 +58,13 @@ func (app *application) showSnippet(w http.ResponseWriter, r *http.Request) {
     })
 }
 
+// Add a new createSnippetForm handler, which for now returns a placeholder response.
+func (app *application) createSnippetForm(w http.ResponseWriter, r *http.Request) {
+    w.Write([]byte("Create a new Snippet..."))
+}
+
 // Add a createSnippet handler function
 func (app *application) createSnippet(w http.ResponseWriter, r *http.Request) {
-    // Use r.Method to check whether te request is using POST or not. Note that
-    // http.MehodPost is a constant equal  to the string "POST".
-    if r.Method != http.MethodPost {
-        // Use the w.Header().Set() method to add an "Allow: POST" header to the
-        // response header map. The first parameter is the header name, and the second
-        // paramter is the header value.
-        w.Header().Set("Allow", http.MethodPost)
-
-        app.clientError(w, http.StatusMethodNotAllowed)
-        return
-    }
-
     // Create some variables holding dummy data. We'll remove these later on
     // during the build.
     title := "O snail"
