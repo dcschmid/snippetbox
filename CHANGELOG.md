@@ -1,3 +1,16 @@
+# [0.3.0](https://github.com/dcschmid/snippetbox/compare/v0.2.0...v0.3.0) (2021-04-26)
+
+
+### Features
+
+* creating a database connection pool ([a755dfa](https://github.com/dcschmid/snippetbox/commit/a755dfa26bd6e33de2fc5fde889b931bf9f2421b))
+* designing a database model ([1e740a9](https://github.com/dcschmid/snippetbox/commit/1e740a9d42dce9e2318452546619c71f019b3899))
+* executing sql statements ([cfd7ea1](https://github.com/dcschmid/snippetbox/commit/cfd7ea133365ee64c457abbf30abc3f3e97a4aed))
+* multiple-record sql queries ([ee25bbb](https://github.com/dcschmid/snippetbox/commit/ee25bbbf3ef5abfe3a4d52960145905eee14de98))
+* single record sql queries ([8f8964b](https://github.com/dcschmid/snippetbox/commit/8f8964bc9c740641bd8e7250f9204bf33ee4e57c))
+
+
+
 # [0.2.0](https://github.com/dcschmid/snippetbox/compare/v0.1.0...v0.2.0) (2021-03-28)
 
 
