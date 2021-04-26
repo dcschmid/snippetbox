@@ -1,3 +1,15 @@
+# [0.5.0](https://github.com/dcschmid/snippetbox/compare/v0.4.0...v0.5.0) (2021-04-26)
+
+
+### Features
+
+* add panic recovery ([2ea8a80](https://github.com/dcschmid/snippetbox/commit/2ea8a807fd069911c6f7fea132cd53d6294e8cd3))
+* add request logging ([2478cd8](https://github.com/dcschmid/snippetbox/commit/2478cd8cc326daabf490128b3626e6c456ee843d))
+* composable middleware chains ([dd57556](https://github.com/dcschmid/snippetbox/commit/dd57556c7ca9ebe03c4fadf5c0db2d8e717aa01e))
+* setting security headers ([6862079](https://github.com/dcschmid/snippetbox/commit/68620792df41d3924fbdfb19333d2fc4f15cc85c))
+
+
+
 # [0.4.0](https://github.com/dcschmid/snippetbox/compare/v0.3.0...v0.4.0) (2021-04-26)
 
 
