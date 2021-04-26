@@ -1,3 +1,17 @@
+# [0.4.0](https://github.com/dcschmid/snippetbox/compare/v0.3.0...v0.4.0) (2021-04-26)
+
+
+### Features
+
+* add common dynamic data ([c099eaf](https://github.com/dcschmid/snippetbox/commit/c099eafdddf329c483d4f26348132b4b3a971e5b))
+* add custom templates functions ([e4d0298](https://github.com/dcschmid/snippetbox/commit/e4d0298345d1b743aad7ce52b3402df9b6079a91))
+* caching templates ([1a96973](https://github.com/dcschmid/snippetbox/commit/1a96973c43a1f2fa429a97946f693fb5122800d9))
+* catching runtime errors ([ede2c88](https://github.com/dcschmid/snippetbox/commit/ede2c880842dfac110ff18b30bf8173836386fb0))
+* displaying dynamic data ([0d8fce0](https://github.com/dcschmid/snippetbox/commit/0d8fce0e8b5c57a59822d877c6c07f190bc00e4f))
+* template actions and functions ([dc6d1d5](https://github.com/dcschmid/snippetbox/commit/dc6d1d565d7a4f3915f7f5ba51cc73b31004895f))
+
+
+
 # [0.3.0](https://github.com/dcschmid/snippetbox/compare/v0.2.0...v0.3.0) (2021-04-26)
 
 
