@@ -3,6 +3,7 @@ package main
 import (
 	"database/sql"
 	"flag"
+	"html/template"
 	"log"
 	"net/http"
 	"os"
@@ -19,6 +20,7 @@ type application struct {
     errorLog *log.Logger
     infoLog *log.Logger
     snippets *mysql.SnippetModel
+    templateCache map[string]*template.Template
 }
 
 func main() {
@@ -61,11 +63,18 @@ func main() {
     // before the main() function exits.
     defer db.Close()
 
+    // Initialize a new template cache...
+    templateCache, err := newTemplateCache("./ui/html/")
+    if err != nil {
+        errorLog.Fatal(err)
+    }
+
     // Initialize a new instance of application containing the dependencies.
     app := &application{
         errorLog: errorLog,
         infoLog: infoLog,
         snippets: &mysql.SnippetModel{DB: db},
+        templateCache: templateCache,
     }
 
     // Initialize a new http.Server struct. We set the Addr and Handler fields so
