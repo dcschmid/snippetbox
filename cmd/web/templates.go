@@ -8,4 +8,5 @@ import "danschmid.de/snippetbox/pkg/models"
 // to it as the build progresses.
 type templateData struct {
     Snippet *models.Snippet
+    Snippets []*models.Snippet
 }
