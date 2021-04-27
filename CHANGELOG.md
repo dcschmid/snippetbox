@@ -1,3 +1,16 @@
+# [0.6.0](https://github.com/dcschmid/snippetbox/compare/v0.5.0...v0.6.0) (2021-04-27)
+
+
+### Features
+
+* add form data validation ([ffb2d0b](https://github.com/dcschmid/snippetbox/commit/ffb2d0b569cbdcd315ebcfbe1ff514b000411365))
+* add restful routes ([1c01326](https://github.com/dcschmid/snippetbox/commit/1c01326a050063112c9163074edd5b4723e016ee))
+* parsing snippet form data ([e3ac5a0](https://github.com/dcschmid/snippetbox/commit/e3ac5a071845bd49ff972589870f09bf01b35bde))
+* scaling data validation ([53857d7](https://github.com/dcschmid/snippetbox/commit/53857d7997fb8644f85799f594303ff9c405c2cf))
+* setting up create snippet form ([67358ae](https://github.com/dcschmid/snippetbox/commit/67358ae22358e0a7e6867304c3f5fec53496741d))
+
+
+
 # [0.5.0](https://github.com/dcschmid/snippetbox/compare/v0.4.0...v0.5.0) (2021-04-26)
 
 
