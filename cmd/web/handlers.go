@@ -3,23 +3,15 @@ package main
 import (
 	"errors"
 	"fmt"
-
 	"net/http"
 	"strconv"
 
+	"danschmid.de/snippetbox/pkg/forms"
 	"danschmid.de/snippetbox/pkg/models"
 )
 
 // Define a home handler function
 func (app *application) home(w http.ResponseWriter, r *http.Request) {
-    // Check if the current request URL path exactly matches "/". If it doesn't, use
-    // the http.NotFound() function to send a 404 response to the client.
-    // Importantly, we then return form the handler.
-    if r.URL.Path != "/" {
-        app.notFound(w)
-        return
-    }
-
     s, err := app.snippets.Latest()
     if err != nil {
         app.serverError(w, err)
@@ -38,7 +30,7 @@ func (app *application) showSnippet(w http.ResponseWriter, r *http.Request) {
     // convert it to an integer using the strconv.Atoi() function. If it can't
     // be converted to an integer, or the value is less than 1, we return a 404 page
     // not found response.
-    id, err := strconv.Atoi(r.URL.Query().Get("id"))
+    id, err := strconv.Atoi(r.URL.Query().Get(":id"))
 
     if err != nil || id < 1 {
         app.notFound(w)
@@ -66,33 +58,47 @@ func (app *application) showSnippet(w http.ResponseWriter, r *http.Request) {
     })
 }
 
+// Add a new createSnippetForm handler, which for now returns a placeholder response.
+func (app *application) createSnippetForm(w http.ResponseWriter, r *http.Request) {
+    app.render(w, r, "create.page.tmpl", &templateData{
+        Form: forms.New(nil),
+    })
+}
+
 // Add a createSnippet handler function
 func (app *application) createSnippet(w http.ResponseWriter, r *http.Request) {
-    // Use r.Method to check whether te request is using POST or not. Note that
-    // http.MehodPost is a constant equal  to the string "POST".
-    if r.Method != http.MethodPost {
-        // Use the w.Header().Set() method to add an "Allow: POST" header to the
-        // response header map. The first parameter is the header name, and the second
-        // paramter is the header value.
-        w.Header().Set("Allow", http.MethodPost)
-
-        app.clientError(w, http.StatusMethodNotAllowed)
+    // First we call r.ParseForm() which adds any data in POST request bodies
+    // to the r.PostForm map. This also works in the same way for PUT and PATCH
+    // requests. If there are any errors, we use our app.ClientError helper to send
+    // a 400 Bad Request response to the user.
+    err := r.ParseForm()
+    if err != nil {
+        app.clientError(w, http.StatusBadRequest)
         return
     }
 
-    // Create some variables holding dummy data. We'll remove these later on
-    // during the build.
-    title := "O snail"
-    content := "O snail\nClimb Mount Fuji,\nBut slowly, slowly!\n\n– Kobayashi Issa"
-    expires := "7"
+    // Create a new forms.Form struct containing the POSTed data from the
+    // form, then use the validation methods to check the content.
+    form := forms.New(r.PostForm)
+    form.Required("title", "content", "expires")
+    form.MaxLength("title", 100)
+    form.PermittedValues("expires", "365", "7", "1")
 
-    // Pass the data to the SnippetModel.Insert() method, receiving the
-    // ID of the new record back.
-    id, err := app.snippets.Insert(title, content, expires)
+    // If the form isn't valid, redisplay the template passing in the
+    // form.Form object as the data.
+    if !form.Valid() {
+        app.render(w, r, "create.page.tmpl", &templateData{Form: form})
+        return
+    }
+
+    // Because the form data (with type url.Values) has been anonymously embedded
+    // in the form.Form struct, we can use the Get() method to retrieve
+    // the validated value for a particular form field.
+    id, err := app.snippets.Insert(form.Get("title"), form.Get("content"), form.Get("expires"))
     if err != nil {
         app.serverError(w, err)
     }
 
     // Redirect the user to the relevant page for the snippet.
-    http.Redirect(w, r, fmt.Sprintf("/snippet?id=%d", id), http.StatusSeeOther)
-}
+    http.Redirect(w, r, fmt.Sprintf("/snippet/%d", id), http.StatusSeeOther)
+} 
