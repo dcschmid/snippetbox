@@ -1,6 +1,7 @@
 package main
 
 import (
+	"crypto/tls"
 	"database/sql"
 	"flag"
 	"html/template"
@@ -39,7 +40,7 @@ func main() {
     // will be used to encrypt and authenticate session cookies). It should be 32
     // bytes long.
     secret := flag.String("secret", "s6Ndh+pPbnzHbS*+9Pk8qGWhTzbpa@ge", "Secret key")
- 
+
     // Importantly, we use the flag.Parse() function to parse the command-line flag.
     // This reads in the command-line flag value and assigns it to the addr
     // variable. You need to call this *before* you use the addr variable
@@ -94,6 +95,13 @@ func main() {
         templateCache: templateCache,
     }
 
+    // Initialize a tls.Config struct to hold the non-default TLS settings we want
+    // the server to use.
+    tlsConfig := &tls.Config{
+        PreferServerCipherSuites: true,
+        CurvePreferences: []tls.CurveID{tls.X25519, tls.CurveP256},
+    }
+
     // Initialize a new http.Server struct. We set the Addr and Handler fields so
     // that the server uses the same network address and routes as before, and set
     // the ErrorLog field so that the server now uses the custom errorLog logger in
@@ -102,6 +110,7 @@ func main() {
         Addr: *addr,
         ErrorLog: errorLog,
         Handler: app.routes(),
+        TLSConfig: tlsConfig,
     }
 
     // Use the http.ListenAndServe() function to start a new web server. We pass in
