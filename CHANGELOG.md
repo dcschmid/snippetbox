@@ -1,3 +1,17 @@
+# [0.7.0](https://github.com/dcschmid/snippetbox/compare/v0.6.0...v0.7.0) (2021-05-02)
+
+
+### Features
+
+* add connection timeouts ([e8934cc](https://github.com/dcschmid/snippetbox/commit/e8934cc8ffacf3757852cf326b9c135fba78f7be))
+* add session based flash message ([ccecae8](https://github.com/dcschmid/snippetbox/commit/ccecae8104583fa2fbf7812ea8d5b34aa6d60f6a))
+* configuring https settings ([42cd2cd](https://github.com/dcschmid/snippetbox/commit/42cd2cdaac2eea1973d4351b24b36c1bba869b14))
+* generating a self-signed tls certificate ([ea4b03d](https://github.com/dcschmid/snippetbox/commit/ea4b03d38cdc5c48babf4800d239ff5c6f2aae09))
+* running a https server ([9255630](https://github.com/dcschmid/snippetbox/commit/925563086777a800e09b8a5d5fe23b0b5893763e))
+* setting up the session manager ([691ce76](https://github.com/dcschmid/snippetbox/commit/691ce76208624fee84924755a1d3534e4dfedaaf))
+
+
+
 # [0.6.0](https://github.com/dcschmid/snippetbox/compare/v0.5.0...v0.6.0) (2021-04-27)
 
 
