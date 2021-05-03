@@ -44,6 +44,8 @@ func (app *application) addDefaultData(td *templateData, r *http.Request) *templ
     td.CurrentYear = time.Now().Year()
     td.Flash = app.session.PopString(r, "flash")
 
+    // Add the authentication status to the template data.
+    td.IsAuthenticated = app.isAuthenticated(r)
     return td
 }
 
@@ -75,4 +77,9 @@ func (app *application) render(w http.ResponseWriter, r *http.Request, name stri
     // is another time where we pass our http.ResponseWriter to a function that
     // takes an io.Writer.
     buf.WriteTo(w)
+}
+
+// Return true if the current request is from authenticated user, otherwise return false.
+func (app *application) isAuthenticated(r *http.Request) bool {
+    return app.session.Exists(r, "authenticatedUserID")
 }
