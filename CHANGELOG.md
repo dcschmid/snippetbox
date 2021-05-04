@@ -1,3 +1,19 @@
+# [0.8.0](https://github.com/dcschmid/snippetbox/compare/v0.7.0...v0.8.0) (2021-05-04)
+
+
+### Features
+
+* add authentication routes ([64ea282](https://github.com/dcschmid/snippetbox/commit/64ea2824bdb019dd4e57615b7f28dcbbbc30d391))
+* add csrf protection ([60e757b](https://github.com/dcschmid/snippetbox/commit/60e757b48e7a2a7189fcfe2688a78da2d3b52e4d))
+* add request context for authentication/authorization ([9eeaeb9](https://github.com/dcschmid/snippetbox/commit/9eeaeb9b2e1ebb5242ef64a5d66a26855500bc9e))
+* add user authorization ([41e4ce0](https://github.com/dcschmid/snippetbox/commit/41e4ce07c8fcceb4f42581b88b0c72866b93607a))
+* add user login ([a4551c8](https://github.com/dcschmid/snippetbox/commit/a4551c859a61630916012e69508bbb56a1ef17d7))
+* add user logout ([dc7069c](https://github.com/dcschmid/snippetbox/commit/dc7069cf04e33f6b4962a5facd44f542ca90d916))
+* add user signup and password encryption ([bb1083f](https://github.com/dcschmid/snippetbox/commit/bb1083fcea00d53ed728bafce376ebde84fe74fe))
+* creating user model ([4c534c7](https://github.com/dcschmid/snippetbox/commit/4c534c7b46abf2cf7a1d2ad9ac000de726433c68))
+
+
+
 # [0.7.0](https://github.com/dcschmid/snippetbox/compare/v0.6.0...v0.7.0) (2021-05-02)
 
 
